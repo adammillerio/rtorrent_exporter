@@ -2,29 +2,29 @@
 package main
 
 import (
-	"flag"
 	"log"
 	"net/http"
 
 	"github.com/mdlayher/rtorrent"
 	"github.com/mdlayher/rtorrent_exporter"
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/namsral/flag"
 )
 
 var (
-	telemetryAddr = flag.String("telemetry.addr", ":9135", "host:port for rTorrent exporter")
-	metricsPath   = flag.String("telemetry.path", "/metrics", "URL path for surfacing collected metrics")
+	telemetryAddr = flag.String("telemetry-addr", ":9135", "host:port for rTorrent exporter")
+	metricsPath   = flag.String("telemetry-path", "/metrics", "URL path for surfacing collected metrics")
 
-	rtorrentAddr     = flag.String("rtorrent.addr", "", "address of rTorrent XML-RPC server")
-	rtorrentUsername = flag.String("rtorrent.username", "", "[optional] username used for HTTP Basic authentication with rTorrent XML-RPC server")
-	rtorrentPassword = flag.String("rtorrent.password", "", "[optional] password used for HTTP Basic authentication with rTorrent XML-RPC server")
+	rtorrentAddr     = flag.String("rtorrent-addr", "", "address of rTorrent XML-RPC server")
+	rtorrentUsername = flag.String("rtorrent-username", "", "[optional] username used for HTTP Basic authentication with rTorrent XML-RPC server")
+	rtorrentPassword = flag.String("rtorrent-password", "", "[optional] password used for HTTP Basic authentication with rTorrent XML-RPC server")
 )
 
 func main() {
 	flag.Parse()
 
 	if *rtorrentAddr == "" {
-		log.Fatal("address of rTorrent XML-RPC server must be specified with '-rtorrent.addr' flag")
+		log.Fatal("address of rTorrent XML-RPC server must be specified with '-rtorrent-addr' flag")
 	}
 
 	// Optionally enable HTTP Basic authentication
